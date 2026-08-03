@@ -1,153 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Sp4 - Roblox Developer</title>
+
+<title>Sp4 | Roblox Developer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Inter,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#09090b;
-    color:white;
-    overflow-x:hidden;
+
+background:#020617;
+color:white;
+overflow-x:hidden;
+
 }
+
 
 body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at 20% 30%,#2563eb44 0%,transparent 35%),
-    radial-gradient(circle at 80% 70%,#7c3aed55 0%,transparent 35%),
-    radial-gradient(circle at 50% 50%,#06b6d455 0%,transparent 40%);
-    filter:blur(80px);
-    animation:move 12s ease infinite alternate;
-    z-index:-2;
+
+content:"";
+position:fixed;
+inset:-50px;
+
+background:
+radial-gradient(circle at 20% 20%,#2563eb55,transparent 35%),
+radial-gradient(circle at 80% 60%,#0ea5e955,transparent 35%),
+radial-gradient(circle at 50% 100%,#1d4ed855,transparent 40%);
+
+filter:blur(90px);
+animation:bgmove 12s infinite alternate;
+z-index:-1;
+
 }
 
-@keyframes move{
-    from{transform:translateY(-50px);}
-    to{transform:translateY(50px);}
+
+@keyframes bgmove{
+
+from{
+transform:translateY(-40px);
 }
+
+to{
+transform:translateY(40px);
+}
+
+}
+
 
 nav{
 
 position:fixed;
 top:0;
 width:100%;
+
 padding:22px 10%;
+
 display:flex;
 justify-content:space-between;
 align-items:center;
-backdrop-filter:blur(18px);
-background:rgba(0,0,0,.25);
-border-bottom:1px solid rgba(255,255,255,.06);
+
+background:rgba(2,6,23,.55);
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
 z-index:999;
 
 }
+
 
 .logo{
 
 font-size:28px;
 font-weight:800;
 
-background:linear-gradient(90deg,#60a5fa,#a855f7);
+background:linear-gradient(90deg,#38bdf8,#2563eb);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
 }
 
+
 nav a{
 
-text-decoration:none;
 color:white;
-margin-left:28px;
+text-decoration:none;
+
+margin-left:25px;
+
+opacity:.8;
+
 transition:.3s;
 
 }
 
+
 nav a:hover{
 
-color:#60a5fa;
+color:#38bdf8;
+opacity:1;
 
 }
+
+
 
 .hero{
 
 height:100vh;
+
 display:flex;
 justify-content:center;
 align-items:center;
+
 flex-direction:column;
+
 text-align:center;
+
 padding:20px;
 
 }
 
+
 .hero h1{
 
-font-size:72px;
+font-size:80px;
 font-weight:800;
-margin-bottom:15px;
 
-background:linear-gradient(90deg,#60a5fa,#a855f7,#06b6d4);
+background:linear-gradient(
+90deg,
+#38bdf8,
+#2563eb,
+#60a5fa
+);
+
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
+margin-bottom:15px;
+
 }
+
 
 .hero h2{
 
 font-size:28px;
-font-weight:500;
-opacity:.8;
-margin-bottom:30px;
+opacity:.85;
+
+margin-bottom:25px;
 
 }
+
 
 .hero p{
 
 max-width:850px;
-line-height:1.8;
+
 font-size:19px;
+
+line-height:1.8;
+
 opacity:.75;
 
 }
 
+
 .button{
 
 display:inline-block;
-margin-top:45px;
-padding:18px 40px;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-border-radius:16px;
-font-weight:700;
-text-decoration:none;
+
+margin-top:40px;
+
+padding:17px 40px;
+
+border-radius:15px;
+
+background:linear-gradient(
+90deg,
+#2563eb,
+#0284c7
+);
+
 color:white;
+
+text-decoration:none;
+
+font-weight:700;
+
 transition:.3s;
 
 }
 
+
 .button:hover{
 
-transform:translateY(-5px);
-box-shadow:0 0 30px #2563eb88;
+transform:translateY(-6px);
+
+box-shadow:
+0 0 40px #2563eb99;
 
 }
+
+
 
 section{
 
@@ -155,105 +223,255 @@ padding:110px 10%;
 
 }
 
+
 .title{
 
 font-size:42px;
-margin-bottom:50px;
+
 font-weight:800;
 
-}
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+margin-bottom:50px;
 
 }
+
+
 
 .card{
 
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
-border-radius:22px;
+background:
+rgba(255,255,255,.04);
+
+border:
+
+1px solid rgba(56,189,248,.15);
+
 padding:35px;
+
+border-radius:25px;
+
+backdrop-filter:blur(20px);
+
 transition:.35s;
 
 }
 
+
 .card:hover{
 
-transform:translateY(-12px);
-border-color:#3b82f6;
-box-shadow:0 20px 60px rgba(37,99,235,.25);
+transform:translateY(-10px);
+
+border-color:#38bdf8;
+
+box-shadow:
+0 20px 60px rgba(14,165,233,.25);
 
 }
+
 
 .card h3{
 
 font-size:25px;
-margin-bottom:16px;
+
+margin-bottom:15px;
 
 }
+
 
 .card p{
 
-line-height:1.8;
 opacity:.75;
 
+line-height:1.8;
+
 }
+
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+}
+
+
+
+/* Skills */
+
 
 .skills{
 
 display:flex;
+
 flex-wrap:wrap;
-gap:18px;
+
+gap:15px;
 
 }
 
+
 .skill{
 
-padding:14px 24px;
+padding:14px 25px;
+
 border-radius:100px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
+
+background:
+rgba(56,189,248,.08);
+
+border:
+1px solid rgba(56,189,248,.2);
+
 transition:.3s;
 
 }
 
+
 .skill:hover{
 
 background:#2563eb;
+
 transform:scale(1.08);
 
 }
 
+
+
+/* Previous Work */
+
+
+.work-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+
+}
+
+
+
+.work-card{
+
+overflow:hidden;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(56,189,248,.2);
+
+border-radius:25px;
+
+transition:.35s;
+
+}
+
+
+.work-card:hover{
+
+transform:translateY(-12px);
+
+border-color:#38bdf8;
+
+box-shadow:
+0 20px 60px rgba(14,165,233,.3);
+
+}
+
+
+
+.work-card img,
+.work-card video{
+
+width:100%;
+
+height:230px;
+
+object-fit:cover;
+
+}
+
+
+
+.work-content{
+
+padding:25px;
+
+}
+
+
+.work-content h3{
+
+font-size:24px;
+
+margin-bottom:12px;
+
+}
+
+
+.work-content p{
+
+opacity:.75;
+
+line-height:1.7;
+
+}
+
+
+/* Stats */
+
+
 .stats{
 
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
 gap:25px;
 
 }
 
+
 .stat{
 
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.1);
+
 padding:40px;
-background:rgba(255,255,255,.04);
-border-radius:20px;
+
 text-align:center;
 
+border-radius:20px;
+
 }
+
 
 .stat h1{
 
-font-size:56px;
-background:linear-gradient(90deg,#60a5fa,#a855f7);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+font-size:55px;
+
+color:#38bdf8;
 
 }
+
+
+.stat p{
+
+opacity:.7;
+
+}
+
 
 .contact{
 
@@ -261,248 +479,544 @@ text-align:center;
 
 }
 
+
 .contact h2{
 
-font-size:44px;
-margin-bottom:20px;
+font-size:45px;
 
 }
+
 
 footer{
 
 padding:40px;
+
 text-align:center;
+
 opacity:.5;
 
 }
 
+
 .reveal{
 
 opacity:0;
+
 transform:translateY(40px);
+
 transition:1s;
 
 }
 
+
 .reveal.active{
 
 opacity:1;
+
 transform:none;
 
 }
-
-@media(max-width:900px){
-
-.hero h1{
-
-font-size:48px;
-
-}
-
-.hero h2{
-
-font-size:22px;
-
-}
-
-nav{
-
-padding:20px;
-
-}
-
-nav a{
-
-margin-left:15px;
-
-}
-
-}
-
 </style>
 
 </head>
 
 <body>
 
+
 <nav>
 
-<div class="logo">&lt;/&gt; Portfolio</div>
+<div class="logo">
+&lt;/&gt; Sp4
+</div>
 
 <div>
 
 <a href="#about">About</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
+<a href="#work">Previous Work</a>
 <a href="#contact">Contact</a>
 
 </div>
 
 </nav>
 
+
+
 <section class="hero">
+
 
 <h1>Sp4</h1>
 
-<h2>Roblox Developer • LuaU Scripter • Builder</h2>
+<h2>
+Roblox Developer • LuaU Scripter • Builder
+</h2>
+
 
 <p>
 
-I specialize in creating high-quality Roblox experiences with a strong focus on performance, scalable systems, clean architecture, UI programming, DataStores, networking, optimization, and building. Whether it's complex gameplay systems or polished user interfaces, I strive to deliver reliable and efficient solutions.
+I specialize in building high quality Roblox experiences with a focus on optimized code,
+advanced systems, UI programming, DataStores, networking, performance improvements,
+and detailed environments.
 
 </p>
 
-<a href="#projects" class="button">View My Work</a>
+
+<a href="#work" class="button">
+View Previous Work
+</a>
+
 
 </section>
+
+
+
 
 <section id="about" class="reveal">
 
-<h1 class="title">About Me</h1>
+
+<h1 class="title">
+About Me
+</h1>
+
 
 <div class="card">
 
 <p>
 
-I'm a full-stack Roblox developer passionate about solving difficult problems and building systems that scale. My work ranges from optimization and procedural systems to UI frameworks, inventory systems, NPC AI, DataStores, and complete game architecture.
+I'm a Roblox developer focused on creating efficient and scalable systems.
+I enjoy solving complex programming challenges, improving performance,
+and creating polished experiences.
+
+My work includes gameplay systems, UI frameworks, NPC AI,
+DataStore systems, optimization, procedural generation,
+and environment building.
 
 </p>
 
 </div>
 
+
 </section>
+
+
+
+
 
 <section id="skills" class="reveal">
 
-<h1 class="title">Skills</h1>
+
+<h1 class="title">
+Skills
+</h1>
+
 
 <div class="skills">
 
+
 <div class="skill">LuaU</div>
 <div class="skill">Code Optimization</div>
-<div class="skill">Systems</div>
+<div class="skill">System Architecture</div>
 <div class="skill">UI Programming</div>
-<div class="skill">Remote Security</div>
 <div class="skill">DataStores</div>
-<div class="skill">NPC AI</div>
-<div class="skill">Inventory Systems</div>
-<div class="skill">Pathfinding</div>
-<div class="skill">Building</div>
-<div class="skill">Terrain</div>
-<div class="skill">Animations</div>
-<div class="skill">Effects</div>
 <div class="skill">Networking</div>
-<div class="skill">Performance Profiling</div>
+<div class="skill">Remote Security</div>
+<div class="skill">NPC AI</div>
+<div class="skill">Pathfinding</div>
+<div class="skill">Inventory Systems</div>
+<div class="skill">Combat Systems</div>
+<div class="skill">Procedural Generation</div>
+<div class="skill">Building</div>
+<div class="skill">Terrain Design</div>
+<div class="skill">Animations</div>
+<div class="skill">Optimization</div>
+
 
 </div>
 
+
 </section>
+
+
+
+
+
 
 <section id="projects" class="reveal">
 
-<h1 class="title">Featured Projects</h1>
+
+<h1 class="title">
+Featured Projects
+</h1>
+
 
 <div class="grid">
 
+
+
 <div class="card">
 
-<h3> Performance Optimization</h3>
+<h3>
+⚡ Performance Optimization
+</h3>
 
 <p>
 
-Optimized large Roblox experiences by reducing unnecessary computations, improving rendering efficiency, and designing scalable architectures capable of handling thousands of active objects.
+Improving Roblox games by reducing unnecessary calculations,
+optimizing scripts, improving networking,
+and creating efficient systems.
 
 </p>
 
 </div>
 
+
+
 <div class="card">
 
-<h3>Advanced Game Systems</h3>
+<h3>
+🎮 Advanced Systems
+</h3>
 
 <p>
 
-Created inventory systems, procedural generation, NPC AI, combat mechanics, custom frameworks, and server-authoritative gameplay systems.
+Creating complete gameplay systems such as inventories,
+quests, combat, NPC logic, and scalable frameworks.
 
 </p>
 
 </div>
 
+
+
+
 <div class="card">
 
-<h3>Modern UI</h3>
+<h3>
+🖥 UI Development
+</h3>
 
 <p>
 
-Designed responsive interfaces with polished animations, transitions, reusable components, and clean code architecture.
+Building modern interfaces with animations,
+responsive layouts, and clean reusable code.
 
 </p>
 
 </div>
 
+
+
+
 <div class="card">
 
-<h3>Building</h3>
+<h3>
+🏗 Building
+</h3>
 
 <p>
 
-Designed immersive environments, optimized maps, and gameplay-focused structures suitable for multiplayer experiences.
+Creating optimized environments,
+maps, structures, and gameplay-focused designs.
 
 </p>
 
 </div>
 
+
+
 </div>
+
 
 </section>
+
+
+
+
+
+
+
+<section id="work" class="reveal">
+
+
+<h1 class="title">
+Previous Work
+</h1>
+
+
+<p style="opacity:.7;margin-bottom:40px;">
+
+Replace the images and videos below with your own projects.
+Put your files inside your GitHub repository folders.
+
+</p>
+
+
+
+<div class="work-grid">
+
+
+
+
+
+<div class="work-card">
+
+
+<img src="images/project1.png">
+
+
+<div class="work-content">
+
+<h3>
+Advanced Systems
+</h3>
+
+
+<p>
+
+Showcase your large systems,
+gameplay mechanics,
+or complicated scripting projects here.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="work-card">
+
+
+<video controls>
+
+<source src="videos/project1.mp4" type="video/mp4">
+
+</video>
+
+
+
+<div class="work-content">
+
+<h3>
+UI Framework
+</h3>
+
+
+<p>
+
+Show your interfaces,
+animations,
+and UI systems in action.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="work-card">
+
+
+<img src="images/project2.png">
+
+
+<div class="work-content">
+
+
+<h3>
+Environment Building
+</h3>
+
+
+<p>
+
+Showcase maps,
+builds,
+terrain,
+and optimized environments.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="work-card">
+
+
+<video controls autoplay muted loop>
+
+
+<source src="videos/project2.mp4" type="video/mp4">
+
+
+</video>
+
+
+
+<div class="work-content">
+
+
+<h3>
+Gameplay Showcase
+</h3>
+
+
+<p>
+
+Add clips showing NPC AI,
+combat,
+procedural generation,
+or other systems.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
 
 <section class="reveal">
 
-<h1 class="title">Highlights</h1>
+
+<h1 class="title">
+Highlights
+</h1>
+
 
 <div class="stats">
 
-<div class="stat">
 
-<h1>100%</h1>
-
-<p>Dedicated to clean, maintainable code.</p>
-
-</div>
 
 <div class="stat">
 
-<h1>∞</h1>
+<h1>
+∞
+</h1>
 
-<p>Always learning and improving.</p>
+<p>
+Constantly improving and learning.
+</p>
 
 </div>
+
+
+
 
 <div class="stat">
 
-<h1>24/7</h1>
+<h1>
+24/7
+</h1>
 
-<p>Focused on solving technical challenges.</p>
+<p>
+Focused on creating better systems.
+</p>
 
 </div>
 
+
+
+
+<div class="stat">
+
+<h1>
+100%
+</h1>
+
+<p>
+Dedicated to quality code.
+</p>
+
 </div>
+
+
+
+
+</div>
+
 
 </section>
+
+
+
+
+
+
+
 
 <section id="contact" class="contact reveal">
 
-<h2>Let's Build Something Great</h2>
 
-<p style="margin-top:20px;opacity:.75;font-size:20px;">
-Discord: <b>@5hah</b>
+<h2>
+Let's Build Something Great
+</h2>
+
+
+<p style="margin-top:25px;font-size:20px;opacity:.7;">
+
+Discord:
+<b>@5hah</b>
+
 </p>
 
+
+
 <a class="button" href="https://github.com/" target="_blank">
+
 GitHub
+
 </a>
 
+
+
 </section>
+
+
+
+
+
+
 
 <footer>
 
@@ -510,25 +1024,51 @@ GitHub
 
 </footer>
 
+
+
+
+
+
 <script>
 
-const observer=new IntersectionObserver(entries=>{
+
+const observer =
+new IntersectionObserver(entries=>{
+
 
 entries.forEach(entry=>{
 
+
 if(entry.isIntersecting){
 
-entry.target.classList.add("active")
+entry.target.classList.add("active");
 
 }
 
-})
 
-},{threshold:.2})
+});
 
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
+
+},
+{
+threshold:.2
+});
+
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(
+element=>observer.observe(element)
+);
+
+
 
 </script>
 
+
+
 </body>
+
 </html>
+    
