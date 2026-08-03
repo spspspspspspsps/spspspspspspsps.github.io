@@ -1,10 +1,534 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sp4 Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Sp4 - Roblox Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#09090b;
+    color:white;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 30%,#2563eb44 0%,transparent 35%),
+    radial-gradient(circle at 80% 70%,#7c3aed55 0%,transparent 35%),
+    radial-gradient(circle at 50% 50%,#06b6d455 0%,transparent 40%);
+    filter:blur(80px);
+    animation:move 12s ease infinite alternate;
+    z-index:-2;
+}
+
+@keyframes move{
+    from{transform:translateY(-50px);}
+    to{transform:translateY(50px);}
+}
+
+nav{
+
+position:fixed;
+top:0;
+width:100%;
+padding:22px 10%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(18px);
+background:rgba(0,0,0,.25);
+border-bottom:1px solid rgba(255,255,255,.06);
+z-index:999;
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:800;
+
+background:linear-gradient(90deg,#60a5fa,#a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:white;
+margin-left:28px;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#60a5fa;
+
+}
+
+.hero{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:72px;
+font-weight:800;
+margin-bottom:15px;
+
+background:linear-gradient(90deg,#60a5fa,#a855f7,#06b6d4);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero h2{
+
+font-size:28px;
+font-weight:500;
+opacity:.8;
+margin-bottom:30px;
+
+}
+
+.hero p{
+
+max-width:850px;
+line-height:1.8;
+font-size:19px;
+opacity:.75;
+
+}
+
+.button{
+
+display:inline-block;
+margin-top:45px;
+padding:18px 40px;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+border-radius:16px;
+font-weight:700;
+text-decoration:none;
+color:white;
+transition:.3s;
+
+}
+
+.button:hover{
+
+transform:translateY(-5px);
+box-shadow:0 0 30px #2563eb88;
+
+}
+
+section{
+
+padding:110px 10%;
+
+}
+
+.title{
+
+font-size:42px;
+margin-bottom:50px;
+font-weight:800;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border-radius:22px;
+padding:35px;
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+border-color:#3b82f6;
+box-shadow:0 20px 60px rgba(37,99,235,.25);
+
+}
+
+.card h3{
+
+font-size:25px;
+margin-bottom:16px;
+
+}
+
+.card p{
+
+line-height:1.8;
+opacity:.75;
+
+}
+
+.skills{
+
+display:flex;
+flex-wrap:wrap;
+gap:18px;
+
+}
+
+.skill{
+
+padding:14px 24px;
+border-radius:100px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+transition:.3s;
+
+}
+
+.skill:hover{
+
+background:#2563eb;
+transform:scale(1.08);
+
+}
+
+.stats{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+
+}
+
+.stat{
+
+padding:40px;
+background:rgba(255,255,255,.04);
+border-radius:20px;
+text-align:center;
+
+}
+
+.stat h1{
+
+font-size:56px;
+background:linear-gradient(90deg,#60a5fa,#a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.contact{
+
+text-align:center;
+
+}
+
+.contact h2{
+
+font-size:44px;
+margin-bottom:20px;
+
+}
+
+footer{
+
+padding:40px;
+text-align:center;
+opacity:.5;
+
+}
+
+.reveal{
+
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+
+}
+
+.reveal.active{
+
+opacity:1;
+transform:none;
+
+}
+
+@media(max-width:900px){
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.hero h2{
+
+font-size:22px;
+
+}
+
+nav{
+
+padding:20px;
+
+}
+
+nav a{
+
+margin-left:15px;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <h1>Hello!</h1>
-    <p>I'm a Roblox developer.</p>
+
+<nav>
+
+<div class="logo">&lt;/&gt; Portfolio</div>
+
+<div>
+
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1>Your Name</h1>
+
+<h2>Roblox Developer • LuaU Scripter • Builder</h2>
+
+<p>
+
+I specialize in creating high-quality Roblox experiences with a strong focus on performance, scalable systems, clean architecture, UI programming, DataStores, networking, optimization, and building. Whether it's complex gameplay systems or polished user interfaces, I strive to deliver reliable and efficient solutions.
+
+</p>
+
+<a href="#projects" class="button">View My Work</a>
+
+</section>
+
+<section id="about" class="reveal">
+
+<h1 class="title">About Me</h1>
+
+<div class="card">
+
+<p>
+
+I'm a full-stack Roblox developer passionate about solving difficult problems and building systems that scale. My work ranges from optimization and procedural systems to UI frameworks, inventory systems, NPC AI, DataStores, and complete game architecture.
+
+</p>
+
+</div>
+
+</section>
+
+<section id="skills" class="reveal">
+
+<h1 class="title">Skills</h1>
+
+<div class="skills">
+
+<div class="skill">LuaU</div>
+<div class="skill">Code Optimization</div>
+<div class="skill">Systems</div>
+<div class="skill">UI Programming</div>
+<div class="skill">Remote Security</div>
+<div class="skill">DataStores</div>
+<div class="skill">NPC AI</div>
+<div class="skill">Inventory Systems</div>
+<div class="skill">Pathfinding</div>
+<div class="skill">Building</div>
+<div class="skill">Terrain</div>
+<div class="skill">Animations</div>
+<div class="skill">Effects</div>
+<div class="skill">Networking</div>
+<div class="skill">Performance Profiling</div>
+
+</div>
+
+</section>
+
+<section id="projects" class="reveal">
+
+<h1 class="title">Featured Projects</h1>
+
+<div class="grid">
+
+<div class="card">
+
+<h3> Performance Optimization</h3>
+
+<p>
+
+Optimized large Roblox experiences by reducing unnecessary computations, improving rendering efficiency, and designing scalable architectures capable of handling thousands of active objects.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Advanced Game Systems</h3>
+
+<p>
+
+Created inventory systems, procedural generation, NPC AI, combat mechanics, custom frameworks, and server-authoritative gameplay systems.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Modern UI</h3>
+
+<p>
+
+Designed responsive interfaces with polished animations, transitions, reusable components, and clean code architecture.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Building</h3>
+
+<p>
+
+Designed immersive environments, optimized maps, and gameplay-focused structures suitable for multiplayer experiences.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="reveal">
+
+<h1 class="title">Highlights</h1>
+
+<div class="stats">
+
+<div class="stat">
+
+<h1>100%</h1>
+
+<p>Dedicated to clean, maintainable code.</p>
+
+</div>
+
+<div class="stat">
+
+<h1>∞</h1>
+
+<p>Always learning and improving.</p>
+
+</div>
+
+<div class="stat">
+
+<h1>24/7</h1>
+
+<p>Focused on solving technical challenges.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact" class="contact reveal">
+
+<h2>Let's Build Something Great</h2>
+
+<p style="margin-top:20px;opacity:.75;font-size:20px;">
+Discord: <b>YourDiscord</b>
+</p>
+
+<a class="button" href="https://github.com/" target="_blank">
+GitHub
+</a>
+
+</section>
+
+<footer>
+
+© 2026 Sp4 • Roblox Developer
+
+</footer>
+
+<script>
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("active")
+
+}
+
+})
+
+},{threshold:.2})
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el))
+
+</script>
+
 </body>
 </html>
