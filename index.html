@@ -448,6 +448,50 @@ opacity:1;
 transform:none;
 
 }
+/* Image Viewer */
+
+.lightbox{
+
+display:none;
+
+position:fixed;
+
+z-index:9999;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.9);
+
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+}
+
+
+.lightbox img{
+
+max-width:90%;
+max-height:90%;
+
+border-radius:12px;
+
+border:1px solid #1f2937;
+
+}
+
+
+.lightbox.active{
+
+display:flex;
+
+}
+    
 </style>
 
 </head>
@@ -987,11 +1031,40 @@ document
 element=>observer.observe(element)
 );
 
+const images = document.querySelectorAll(".work-card img");
 
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+
+
+images.forEach(image => {
+
+    image.style.cursor = "pointer";
+
+    image.addEventListener("click", () => {
+
+        lightboxImage.src = image.src;
+
+        lightbox.classList.add("active");
+
+    });
+
+});
+
+
+lightbox.addEventListener("click", () => {
+
+    lightbox.classList.remove("active");
+
+});
 
 </script>
 
+<div class="lightbox" id="lightbox">
 
+<img id="lightbox-image">
+
+</div>
 
 </body>
 
