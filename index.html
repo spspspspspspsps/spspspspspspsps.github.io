@@ -1030,6 +1030,7 @@ document
 .forEach(
 element=>observer.observe(element)
 );
+window.addEventListener("load", () => {
 
 const images = document.querySelectorAll(".work-card img");
 
@@ -1058,6 +1059,8 @@ lightbox.addEventListener("click", () => {
 
 });
 
+});
+
 </script>
 
 <div class="lightbox" id="lightbox">
@@ -1065,6 +1068,61 @@ lightbox.addEventListener("click", () => {
 <img id="lightbox-image">
 
 </div>
+
+
+<script>
+
+const observer =
+new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+entry.target.classList.add("active");
+}
+
+});
+
+},
+{
+threshold:.2
+});
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element=>observer.observe(element));
+
+
+
+const images = document.querySelectorAll(".work-card img");
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+
+
+images.forEach(image => {
+
+    image.style.cursor = "pointer";
+
+    image.onclick = function(){
+
+        lightboxImage.src = this.src;
+
+        lightbox.classList.add("active");
+
+    };
+
+});
+
+
+lightbox.onclick = function(){
+
+    lightbox.classList.remove("active");
+
+};
+
+</script>
 
 </body>
 
