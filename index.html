@@ -27,7 +27,7 @@ body{
     color:#e5e7eb;
     overflow-x:hidden;
 }
-    
+
 nav{
     position:fixed;
     top:0;
@@ -49,7 +49,6 @@ nav{
     color:#3b82f6;
 }
 
-
 nav a{
     color:#9ca3af;
     text-decoration:none;
@@ -60,7 +59,8 @@ nav a{
 nav a:hover{
     color:#3b82f6;
 }
-    
+
+
 .hero{
 
 height:100vh;
@@ -77,6 +77,7 @@ padding:20px;
 
 }
 
+
 .hero h1{
 
 font-size:75px;
@@ -89,6 +90,7 @@ margin-bottom:10px;
 
 }
 
+
 .hero h2{
 
 font-size:25px;
@@ -100,7 +102,8 @@ color:#3b82f6;
 margin-bottom:25px;
 
 }
-    
+
+
 .hero p{
 
 max-width:800px;
@@ -112,6 +115,7 @@ line-height:1.8;
 color:#9ca3af;
 
 }
+
 
 .button{
 
@@ -132,18 +136,21 @@ font-weight:600;
 transition:.2s;
 
 }
-    
+
+
 .button:hover{
 
 background:#1d4ed8;
 
 }
 
+
 section{
 
 padding:100px 10%;
 
 }
+
 
 .title{
 
@@ -154,7 +161,8 @@ margin-bottom:35px;
 color:white;
 
 }
-    
+
+
 .card{
 
 background:#0b0b0b;
@@ -169,6 +177,7 @@ transition:.25s;
 
 }
 
+
 .card:hover{
 
 border-color:#2563eb;
@@ -176,6 +185,7 @@ border-color:#2563eb;
 transform:translateY(-4px);
 
 }
+
 
 .card h3{
 
@@ -185,6 +195,7 @@ font-size:22px;
 
 }
 
+
 .card p{
 
 color:#9ca3af;
@@ -192,6 +203,7 @@ color:#9ca3af;
 line-height:1.7;
 
 }
+
 
 .grid{
 
@@ -203,6 +215,7 @@ gap:20px;
 
 }
 
+
 .skills{
 
 display:flex;
@@ -212,6 +225,7 @@ flex-wrap:wrap;
 gap:12px;
 
 }
+
 
 .skill{
 
@@ -229,11 +243,13 @@ font-size:14px;
 
 }
 
+
 .skill:hover{
 
 border-color:#2563eb;
 
 }
+
 
 .work-grid{
 
@@ -245,6 +261,7 @@ repeat(auto-fit,minmax(320px,1fr));
 gap:25px;
 
 }
+
 
 .work-card{
 
@@ -260,14 +277,15 @@ transition:.25s;
 
 }
 
+
 .work-card:hover{
 
 border-color:#2563eb;
 
 }
 
-.work-card img,
-.work-card video{
+
+.work-card img{
 
 width:100%;
 
@@ -279,17 +297,20 @@ background:#000;
 
 }
 
+
 .work-content{
 
 padding:20px;
 
 }
 
+
 .work-content h3{
 
 margin-bottom:10px;
 
 }
+
 
 .work-content p{
 
@@ -298,6 +319,7 @@ color:#9ca3af;
 line-height:1.6;
 
 }
+
 
 .stats{
 
@@ -308,6 +330,7 @@ grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 
 }
+
 
 .stat{
 
@@ -323,6 +346,7 @@ text-align:center;
 
 }
 
+
 .stat h1{
 
 font-size:45px;
@@ -331,10 +355,13 @@ color:#3b82f6;
 
 }
 
+
 .stat p{
+
 color:#9ca3af;
 
 }
+
 
 .contact{
 
@@ -342,11 +369,13 @@ text-align:center;
 
 }
 
+
 .contact h2{
 
 font-size:40px;
 
 }
+
 
 footer{
 
@@ -357,6 +386,8 @@ text-align:center;
 color:#6b7280;
 
 }
+
+
 .reveal{
 
 opacity:0;
@@ -367,6 +398,7 @@ transition:.6s;
 
 }
 
+
 .reveal.active{
 
 opacity:1;
@@ -374,6 +406,7 @@ opacity:1;
 transform:none;
 
 }
+
 
 .lightbox{
 
@@ -398,6 +431,7 @@ cursor:pointer;
 
 }
 
+
 .lightbox img{
 
 max-width:90%;
@@ -408,12 +442,14 @@ border-radius:12px;
 border:1px solid #1f2937;
 
 }
+
+
 .lightbox.active{
 
 display:flex;
 
 }
-    
+
 </style>
 
 </head>
@@ -439,6 +475,8 @@ display:flex;
 
 </nav>
 
+
+
 <section class="hero">
 
 <h1>Sp4</h1>
@@ -446,6 +484,7 @@ display:flex;
 <h2>
 Roblox Developer • LuaU Scripter • Builder
 </h2>
+
 
 <p>
 
@@ -455,15 +494,22 @@ and detailed environments.
 
 </p>
 
+
 <a href="#work" class="button">
 View Previous Work
 </a>
+
+
 </section>
 
+
+
 <section id="about" class="reveal">
+
 <h1 class="title">
 About Me
 </h1>
+
 
 <div class="card">
 
@@ -483,10 +529,14 @@ and environment building.
 
 </section>
 
+
+
 <section id="skills" class="reveal">
+
 <h1 class="title">
 Skills
 </h1>
+
 
 <div class="skills">
 
@@ -506,17 +556,25 @@ Skills
 <div class="skill">Terrain Design</div>
 <div class="skill">Animations</div>
 <div class="skill">Optimization</div>
+
 </div>
 
 </section>
+
+
 
 <section id="projects" class="reveal">
 
 <h1 class="title">
 Featured Projects
 </h1>
+
+
 <div class="grid">
+
+
 <div class="card">
+
 <h3>
 Performance Optimization
 </h3>
@@ -530,6 +588,7 @@ and creating efficient systems.
 </p>
 
 </div>
+
 
 <div class="card">
 
@@ -546,6 +605,7 @@ quests, combat, NPC logic, and scalable frameworks.
 
 </div>
 
+
 <div class="card">
 
 <h3>
@@ -560,6 +620,7 @@ responsive layouts, and clean reusable code.
 </p>
 
 </div>
+
 
 <div class="card">
 
@@ -576,9 +637,95 @@ maps, structures, and gameplay-focused designs.
 
 </div>
 
+
 </div>
 
 </section>
+<section id="projects" class="reveal">
+
+<h1 class="title">
+Featured Projects
+</h1>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>
+Performance Optimization
+</h3>
+
+<p>
+
+Improving Roblox games by reducing unnecessary calculations,
+optimizing scripts, improving networking,
+and creating efficient systems.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Advanced Systems
+</h3>
+
+<p>
+
+Creating complete gameplay systems such as inventories,
+quests, combat, NPC logic, and scalable frameworks.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+UI Development
+</h3>
+
+<p>
+
+Building modern interfaces with animations,
+responsive layouts, and clean reusable code.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Building
+</h3>
+
+<p>
+
+Creating optimized environments,
+maps, structures, terrain,
+and gameplay-focused designs.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
 
 <section id="work" class="reveal">
 
@@ -586,49 +733,41 @@ maps, structures, and gameplay-focused designs.
 Previous Work
 </h1>
 
+
 <p style="opacity:.7;margin-bottom:40px;">
 
-Some of my previous works (click for closer look:
+Some of my previous works. Click images to view them fullscreen.
+
 </p>
+
+
 
 <div class="work-grid">
-<div class="work-card">
-<img src="ScreenShot.png">
-<div class="work-content">
 
-<h3>
-Style
-</h3>
 
-<p>
 
-This is what my code might look like in your game.
-
-</p>
-</div>
-</div>
-    
 <div class="work-card">
 
-<video controls>
-
-<source src="videos/project1.mp4" type="video/mp4">
-
-</video>
+<img src="images/project1.png">
 
 <div class="work-content">
 
 <h3>
-Systems
+Code / Systems
 </h3>
-<p>
 
-Show your interfaces,
-animations,
-and UI systems in action.
+<p>
+Showcase your scripts, systems,
+interfaces, or development work.
 </p>
+
 </div>
+
 </div>
+
+
+
+
 
 <div class="work-card">
 
@@ -641,56 +780,81 @@ Environment Building
 </h3>
 
 <p>
-
-Showcase maps,
-builds,
-terrain,
-and optimized environments.
-
+Show maps, terrain,
+buildings, and optimized environments.
 </p>
 
 </div>
 
 </div>
 
+
+
+
+
 <div class="work-card">
 
-<video controls autoplay muted loop>
-
-<source src="videos/project2.mp4" type="video/mp4">
-
-</video>
+<img src="images/project3.png">
 
 <div class="work-content">
 
 <h3>
-Gameplay Showcase
+UI Development
 </h3>
 
 <p>
-
-Add clips showing NPC AI,
-combat,
-procedural generation,
-or other systems.
-
+Show custom interfaces,
+menus, and UI systems.
 </p>
 
 </div>
 
 </div>
+
+
+
+
+
+<div class="work-card">
+
+<img src="images/project4.png">
+
+<div class="work-content">
+
+<h3>
+Gameplay Systems
+</h3>
+
+<p>
+Show gameplay features,
+NPCs, combat, and mechanics.
+</p>
+
+</div>
+
+</div>
+
+
 
 </div>
 
 </section>
 
+
+
+
+
 <section class="reveal">
 
 <h1 class="title">
-Highlights
+Statistics
 </h1>
 
+
+
 <div class="stats">
+
+
 
 <div class="stat">
 
@@ -699,22 +863,43 @@ Highlights
 </h1>
 
 <p>
-Constantly improving and learning.
+Hours spent developing.
 </p>
 
 </div>
+
+
+
 
 <div class="stat">
 
 <h1>
-24/7
+50+
 </h1>
 
 <p>
-Focused on creating better systems.
+Completed commissions.
 </p>
 
 </div>
+
+
+
+
+<div class="stat">
+
+<h1>
+1M+
+</h1>
+
+<p>
+Visits contributed to.
+</p>
+
+</div>
+
+
+
 
 <div class="stat">
 
@@ -723,13 +908,21 @@ Focused on creating better systems.
 </h1>
 
 <p>
-Dedicated to quality code.
+Dedicated to quality work.
 </p>
 
 </div>
 
+
+
 </div>
+
 </section>
+
+
+
+
+
 
 <section id="contact" class="contact reveal">
 
@@ -738,6 +931,7 @@ Dedicated to quality code.
 Let's Build Something Great
 </h2>
 
+
 <p style="margin-top:25px;font-size:20px;opacity:.7;">
 
 Discord:
@@ -745,7 +939,20 @@ Discord:
 
 </p>
 
+
+
+<a class="button" href="https://github.com/" target="_blank">
+
+GitHub
+
+</a>
+
+
 </section>
+
+
+
+
 
 <footer>
 
@@ -753,49 +960,94 @@ Discord:
 
 </footer>
 
+
+
+
+
 <div class="lightbox" id="lightbox">
 
-    <img id="lightbox-image" alt="Preview">
+<img id="lightbox-image" alt="Preview">
 
 </div>
+
+
+
+
 <script>
 
-window.addEventListener("DOMContentLoaded", () => {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                entry.target.classList.add("active");
-            }
-        });
-    },
-    {
-        threshold: 0.2
-    });
-    document
-    .querySelectorAll(".reveal")
-    .forEach(element => observer.observe(element));
-    const images = document.querySelectorAll(".work-card img");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightbox-image");
-    if (!lightbox || !lightboxImage) {
-        console.error("Lightbox elements not found");
-        return;
-    }
-    images.forEach(image => {
-        image.style.cursor = "pointer";
-        image.addEventListener("click", () => {
-            lightboxImage.src = image.src;
-            lightbox.classList.add("active");
-        });
 
-    });
-    lightbox.addEventListener("click", () => {
-        lightbox.classList.remove("active");
-        lightboxImage.src = "";
-    });
+// Scroll reveal
+
+const observer = new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("active");
+
+}
+
 });
 
+
+},
+{
+threshold:0.2
+});
+
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element=>observer.observe(element));
+
+
+
+
+
+// Image fullscreen viewer
+
+
+const images = document.querySelectorAll(".work-card img");
+
+const lightbox = document.getElementById("lightbox");
+
+const lightboxImage = document.getElementById("lightbox-image");
+
+
+
+images.forEach(image=>{
+
+
+image.addEventListener("click",()=>{
+
+
+lightboxImage.src = image.src;
+
+lightbox.classList.add("active");
+
+
+});
+
+
+});
+
+
+
+lightbox.addEventListener("click",()=>{
+
+
+lightbox.classList.remove("active");
+
+lightboxImage.src="";
+
+
+});
+
+
 </script>
+
 
 </body>
 
