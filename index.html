@@ -285,16 +285,12 @@ border-color:#2563eb;
 }
 
 
-.work-card img{
-
-width:100%;
-
-height:220px;
-
-object-fit:cover;
-
-background:#000;
-
+.work-card img,
+.work-card video {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
 }
 
 
@@ -679,20 +675,23 @@ I keep my codes and structure clean and organized for my clients.
 
 <div class="work-card">
 
-<img src="images/project3.png">
+    <video autoplay muted loop playsinline>
+        <source src="Roblox Studio 2026.08.05 - 20.41.41.03.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<div class="work-content">
+    <div class="work-content">
 
-<h3>
-UI Development
-</h3>
+        <h3>
+            UI Development
+        </h3>
 
-<p>
-Show custom interfaces,
-menus, and UI systems.
-</p>
+        <p>
+            Show custom interfaces,
+            menus, and UI systems.
+        </p>
 
-</div>
+    </div>
 
 </div>
 
