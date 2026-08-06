@@ -1,915 +1,1347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e1e1e">
+<meta name="description" content="Sp4 — Roblox developer and Luau scripter specializing in optimized systems, UI programming, DataStores and networking.">
+<title>Sp4 — Roblox Developer | Studio Portfolio</title>
 
-<title>Sp4 - Roblox Developer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Inter, sans-serif;
+    font-family:'Inter', sans-serif;
+}
+
+:root{
+    --bg:#1e1e1e;
+    --bg-alt:#181818;
+    --panel:#252526;
+    --panel-alt:#2d2d30;
+    --border:#3f3f46;
+    --border-soft:#333333;
+
+    --accent:#3fa9ff;
+    --accent-dim:#0e639c;
+    --accent-green:#3ddc84;
+
+    --keyword:#569cd6;
+    --string:#ce9178;
+    --comment:#6a9955;
+    --func:#dcdcaa;
+    --number:#b5cea8;
+    --variable:#9cdcfe;
+    --systems-teal:#4ec9b0;
+
+    --folder-yellow:#dcb67a;
+    --script-blue:#6cb6ff;
+    --remote-green:#6bcf7f;
+
+    --text:#d4d4d4;
+    --text-dim:#a8a8a8;
+    --text-faint:#6f6f6f;
+
+    --header-h:88px;
+    --sidebar-w:250px;
 }
 
 html{
     scroll-behavior:smooth;
 }
 
-body{
-    background:#050505;
-    color:#e5e7eb;
-    overflow-x:hidden;
+@media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
 }
 
-nav{
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+    padding-top:var(--header-h);
+}
+
+section[id]{
+    scroll-margin-top:calc(var(--header-h) + 8px);
+}
+
+:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+}
+
+a{ color:inherit; }
+
+::-webkit-scrollbar{ width:10px; height:10px; }
+::-webkit-scrollbar-track{ background:var(--bg-alt); }
+::-webkit-scrollbar-thumb{ background:#3a3a3d; border-radius:5px; }
+::-webkit-scrollbar-thumb:hover{ background:#4a4a4d; }
+
+svg.icon{ display:block; }
+
+/* ===================== HEADER (title bar + ribbon) ===================== */
+
+.studio-header{
     position:fixed;
-    top:0;
+    top:0; left:0; right:0;
+    z-index:1000;
+}
+
+.titlebar{
+    height:36px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 16px;
+    background:var(--bg-alt);
+    border-bottom:1px solid var(--border-soft);
+}
+
+.tl-dots{ display:flex; gap:6px; flex-shrink:0; }
+.tl-dot{ width:10px; height:10px; border-radius:50%; }
+.tl-dot.red{ background:#ff5f56; }
+.tl-dot.yellow{ background:#ffbd2e; }
+.tl-dot.green{ background:#27c93f; }
+
+.titlebar-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-faint);
+}
+
+.titlebar-spacer{ flex:1; }
+
+.win-controls{
+    display:flex;
+    gap:16px;
+    font-family:'JetBrains Mono', monospace;
+    color:var(--text-faint);
+    font-size:13px;
+    line-height:1;
+}
+
+.ribbon{
+    height:52px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    padding:0 16px;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+}
+
+.ribbon-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    width:32px;
+    height:32px;
+    background:none;
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--text-dim);
+    cursor:pointer;
+}
+.ribbon-toggle:hover{ border-color:var(--accent); color:var(--text); }
+.ribbon-toggle svg{ width:16px; height:16px; }
+
+.ribbon-tabs{
+    display:flex;
+    gap:26px;
+    height:100%;
+    align-items:center;
+}
+
+.ribbon-tab{
+    font-size:13px;
+    color:var(--text-faint);
+    height:100%;
+    display:flex;
+    align-items:center;
+    border-bottom:2px solid transparent;
+    letter-spacing:.2px;
+}
+
+.ribbon-tab.active{
+    color:var(--text);
+    border-bottom-color:var(--accent);
+    font-weight:600;
+}
+
+.ribbon-spacer{ flex:1; }
+
+.ribbon-logo{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:15px;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.play-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--accent-green);
+    color:#04220f;
+    border:none;
+    padding:9px 18px;
+    border-radius:5px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    transition:.15s;
+    font-family:'Inter', sans-serif;
+}
+.play-btn:hover{ filter:brightness(1.08); transform:translateY(-1px); }
+.play-btn svg{ width:11px; height:11px; }
+
+@media (max-width:899px){
+    .ribbon-toggle{ display:flex; }
+    .ribbon-tabs{ display:none; }
+    .titlebar-title{ display:none; }
+}
+
+/* ===================== EXPLORER SIDEBAR ===================== */
+
+.explorer-backdrop{
+    position:fixed;
+    inset:0;
+    top:var(--header-h);
+    background:rgba(0,0,0,.55);
+    z-index:850;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+}
+.explorer-backdrop.open{ opacity:1; pointer-events:auto; }
+
+.explorer{
+    position:fixed;
+    top:var(--header-h);
+    left:0;
+    bottom:0;
+    width:var(--sidebar-w);
+    background:var(--panel);
+    border-right:1px solid var(--border);
+    overflow-y:auto;
+    z-index:900;
+    transition:transform .25s ease;
+}
+
+.explorer-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 14px;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    border-bottom:1px solid var(--border-soft);
+    font-weight:600;
+}
+
+.explorer-close{
+    display:none;
+    background:none;
+    border:none;
+    color:var(--text-faint);
+    cursor:pointer;
+    padding:2px;
+}
+.explorer-close svg{ width:16px; height:16px; }
+
+.tree{ padding:6px 0 20px; font-size:13.5px; }
+
+.tree-row{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:6px 10px;
+    color:var(--text-dim);
+    border-left:2px solid transparent;
+    user-select:none;
+    text-decoration:none;
+    background:none;
+    border-top:none;
+    border-bottom:none;
+    border-right:none;
     width:100%;
-    padding:20px 10%;
+    text-align:left;
+    font:inherit;
+    cursor:pointer;
+}
+
+.tree-row:hover{ background:#2a2d2e; color:var(--text); }
+
+.tree-row.selected{
+    background:#0a3a5c;
+    color:#ffffff;
+    border-left-color:var(--accent);
+}
+
+.tree-row .chevron{
+    width:14px; height:14px; flex-shrink:0;
+    color:var(--text-faint);
+    transition:transform .15s ease;
+}
+
+.chevron-spacer{ width:14px; height:14px; flex-shrink:0; }
+
+.tree-row .row-icon{ width:15px; height:15px; flex-shrink:0; }
+
+.tree-row .row-label{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.tree-children{ padding-left:14px; }
+
+.tree-branch.collapsed > .tree-children{ display:none; }
+.tree-branch.collapsed > .tree-row .chevron{ transform:rotate(-90deg); }
+
+@media (max-width:899px){
+    .explorer{ transform:translateX(-100%); }
+    .explorer.open{ transform:translateX(0); box-shadow:0 0 40px rgba(0,0,0,.6); }
+    .explorer-close{ display:block; }
+}
+
+/* ===================== LAYOUT ===================== */
+
+.main-wrap{ margin-left:var(--sidebar-w); }
+
+@media (max-width:899px){
+    .main-wrap{ margin-left:0; }
+}
+
+section{
+    padding:clamp(60px,8vw,100px) clamp(20px,6vw,80px);
+}
+
+.title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:clamp(26px,3.4vw,34px);
+    font-weight:700;
+    color:white;
+    margin-bottom:34px;
+}
+
+.title-icon{ width:26px; height:26px; color:var(--accent); flex-shrink:0; }
+
+/* ===================== HERO ===================== */
+
+.hero{
+    position:relative;
+    min-height:calc(100vh - var(--header-h));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    padding:60px 20px;
+    overflow:hidden;
+}
+
+.hero-grid{
+    position:absolute;
+    inset:-20% -10%;
+    background-image:
+        linear-gradient(var(--border-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:46px 46px;
+    opacity:.4;
+    -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 38%, #000 35%, transparent 78%);
+    mask-image:radial-gradient(ellipse 60% 55% at 50% 38%, #000 35%, transparent 78%);
+    animation:gridFloat 16s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes gridFloat{
+    from{ background-position:0 0; }
+    to{ background-position:46px 46px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .hero-grid{ animation:none; }
+}
+
+.hero-content{ position:relative; z-index:2; max-width:820px; }
+
+.hero-breadcrumb{
+    font-family:'JetBrains Mono', monospace;
+    font-size:clamp(11px,2vw,13px);
+    color:var(--text-faint);
+    margin-bottom:20px;
+}
+.hero-breadcrumb .sep{ margin:0 6px; color:#4a4a4a; }
+
+.hero-title{
+    font-size:clamp(48px,9vw,80px);
+    font-weight:800;
+    color:white;
+    line-height:1;
+    display:inline-flex;
+    align-items:baseline;
+}
+
+.hero-cursor{
+    display:inline-block;
+    width:9px;
+    height:0.8em;
+    background:var(--accent);
+    margin-left:6px;
+    animation:blink 1.1s steps(1) infinite;
+    vertical-align:text-bottom;
+}
+
+@keyframes blink{ 50%{ opacity:0; } }
+@media (prefers-reduced-motion: reduce){ .hero-cursor{ animation:none; } }
+
+.hero-role{
+    font-family:'JetBrains Mono', monospace;
+    font-style:italic;
+    font-size:clamp(14px,2.6vw,19px);
+    color:var(--comment);
+    margin:16px 0 26px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:0 auto;
+    font-size:17px;
+    line-height:1.85;
+    color:var(--text-dim);
+}
+
+.btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:34px;
+    padding:14px 28px;
+    background:var(--accent);
+    color:#04182b;
+    border-radius:6px;
+    font-weight:700;
+    text-decoration:none;
+    transition:.18s;
+}
+.btn-primary:hover{ background:#5fbaff; transform:translateY(-2px); }
+.btn-primary svg{ width:12px; height:12px; }
+
+/* ===================== ABOUT (editor window) ===================== */
+
+.editor-window{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.editor-tabbar{
+    display:flex;
+    align-items:center;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+}
+
+.editor-tab{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--text-dim);
+    background:var(--bg-alt);
+    border-right:1px solid var(--border);
+    border-top:2px solid var(--script-blue);
+}
+
+.editor-tab svg{ width:14px; height:14px; color:var(--script-blue); }
+
+.editor-body{
+    padding:26px clamp(18px,4vw,32px);
+    overflow-x:auto;
+}
+
+.editor-code{ font-family:'JetBrains Mono', monospace; font-size:14px; line-height:1.9; }
+
+.code-line{
+    display:grid;
+    grid-template-columns:32px 1fr;
+    column-gap:18px;
+}
+
+.code-line::before{
+    counter-increment:line;
+    content:counter(line);
+    color:var(--text-faint);
+    font-size:12px;
+    text-align:right;
+    user-select:none;
+    padding-top:3px;
+}
+
+.editor-code{ counter-reset:line; }
+
+.code-line.comment{ color:var(--comment); font-style:italic; }
+
+.tok-kw{ color:var(--keyword); }
+.tok-str{ color:var(--string); }
+.tok-var{ color:var(--variable); }
+.tok-func{ color:var(--func); }
+
+/* ===================== SKILLS ===================== */
+
+.skills-groups{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.skill-group{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:16px 18px 12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1 1 220px;
+}
+
+.skill-group-items{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding-bottom:12px;
+}
+
+.skill-btn{
+    width:78px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:7px;
+    padding:10px 6px;
+    border-radius:6px;
+}
+.skill-btn:hover{ background:#2a2d2e; }
+.skill-btn svg{ width:22px; height:22px; }
+.skill-btn span{ font-size:11px; text-align:center; line-height:1.25; color:var(--text-dim); }
+
+.skill-group-caption{
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    border-top:1px solid var(--border-soft);
+    width:100%;
+    text-align:center;
+    padding-top:9px;
+    margin-top:2px;
+    font-weight:600;
+}
+
+.grp-scripting .skill-btn svg{ color:var(--keyword); }
+.grp-systems .skill-btn svg{ color:var(--systems-teal); }
+.grp-data .skill-btn svg{ color:var(--string); }
+.grp-interface .skill-btn svg{ color:var(--func); }
+
+.skills-more{
+    margin-top:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    color:var(--text-faint);
+    font-size:13px;
+    font-family:'JetBrains Mono', monospace;
+}
+.skills-more svg{ width:16px; height:16px; }
+
+/* ===================== PROJECTS ===================== */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:22px;
+}
+
+.proj-window{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    transition:.2s;
+    display:flex;
+    flex-direction:column;
+}
+.proj-window:hover{ border-color:var(--accent); transform:translateY(-4px); }
+
+.proj-titlebar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 14px;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+}
+.proj-titlebar svg{ width:13px; height:13px; color:var(--script-blue); flex-shrink:0; }
+.proj-fname{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-dim);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.proj-chip{
+    margin-left:auto;
+    font-size:10px;
+    padding:2px 9px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    color:var(--text-faint);
+    flex-shrink:0;
+    font-family:'JetBrains Mono', monospace;
+}
+
+.proj-code{
+    padding:18px 18px 22px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    line-height:1.8;
+    white-space:pre-wrap;
+    word-break:break-word;
+    flex:1;
+}
+
+/* ===================== PREVIOUS WORK ===================== */
+
+.work-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+    gap:25px;
+}
+
+.work-card{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    transition:.25s;
+}
+.work-card:hover{ border-color:var(--accent); }
+
+.work-titlebar{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 12px;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+}
+.work-titlebar .tl-dot{ width:8px; height:8px; }
+.work-fname{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--text-faint);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.work-card img, .work-card video{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+    cursor:pointer;
+}
+.work-card video{ cursor:default; }
+
+.work-content{ padding:20px; }
+.work-content h3{ margin-bottom:9px; color:white; }
+.work-content p{ color:var(--text-dim); line-height:1.6; font-size:14.5px; }
+
+/* ===================== STATISTICS (properties panel) ===================== */
+
+.props-panel{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.props-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 20px;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+}
+.props-header svg{ width:15px; height:15px; color:var(--accent); }
+
+.props-row{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    background:#050505dd;
-    border-bottom:1px solid #1f2937;
-
-    z-index:999;
+    padding:18px 22px;
+    border-bottom:1px solid var(--border-soft);
 }
+.props-row:last-child{ border-bottom:none; }
 
-.logo{
-    font-size:24px;
+.props-name{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--text-dim);
+    font-size:14px;
+}
+.props-value{
+    font-family:'JetBrains Mono', monospace;
+    font-size:21px;
     font-weight:700;
-    color:#3b82f6;
 }
+.props-value.number{ color:var(--number); }
+.props-value.string{ color:var(--string); }
 
-nav a{
-    color:#9ca3af;
-    text-decoration:none;
-    margin-left:25px;
-    transition:.2s;
+/* ===================== CONTACT (command bar) ===================== */
+
+.contact{ text-align:center; }
+.contact h2{ font-size:clamp(28px,4.5vw,40px); color:white; font-weight:700; }
+.contact .subtext{ margin-top:14px; color:var(--text-dim); font-size:15px; }
+
+.command-bar{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:10px;
+    max-width:520px;
+    margin:34px auto 0;
+    overflow:hidden;
+    text-align:left;
 }
-
-nav a:hover{
-    color:#3b82f6;
+.command-header{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:10px 16px;
+    background:var(--panel-alt);
+    border-bottom:1px solid var(--border);
+    font-size:12px;
+    color:var(--text-faint);
+    font-family:'JetBrains Mono', monospace;
 }
+.command-header svg{ width:14px; height:14px; }
 
-
-.hero{
-
-height:100vh;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-flex-direction:column;
-
-text-align:center;
-
-padding:20px;
-
+.command-body{
+    padding:20px 22px 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    line-height:1.9;
 }
+.command-line{ color:var(--text-dim); }
+.command-line .prompt{ color:var(--accent); margin-right:8px; }
+.command-output{ color:var(--string); font-weight:700; font-size:17px; }
 
-
-.hero h1{
-
-font-size:75px;
-
-font-weight:800;
-
-color:white;
-
-margin-bottom:10px;
-
+.cursor-blink{
+    display:inline-block;
+    width:8px;
+    height:16px;
+    background:var(--accent);
+    margin-left:4px;
+    vertical-align:middle;
+    animation:blink 1s steps(1) infinite;
 }
+@media (prefers-reduced-motion: reduce){ .cursor-blink{ animation:none; } }
 
+/* ===================== FOOTER (status bar) ===================== */
 
-.hero h2{
-
-font-size:25px;
-
-font-weight:500;
-
-color:#3b82f6;
-
-margin-bottom:25px;
-
+.status-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 22px;
+    background:var(--panel-alt);
+    border-top:1px solid var(--border);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--text-faint);
+    flex-wrap:wrap;
+    gap:8px;
 }
+.status-left{ display:flex; align-items:center; gap:8px; }
+.status-dot{ width:8px; height:8px; border-radius:50%; background:var(--accent-green); }
 
+/* ===================== REVEAL / LIGHTBOX ===================== */
 
-.hero p{
-
-max-width:800px;
-
-font-size:18px;
-
-line-height:1.8;
-
-color:#9ca3af;
-
+.reveal{ opacity:0; transform:translateY(20px); transition:.6s; }
+.reveal.active{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
 }
-
-
-.button{
-
-margin-top:35px;
-
-padding:14px 30px;
-
-background:#2563eb;
-
-border-radius:8px;
-
-color:white;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.2s;
-
-}
-
-
-.button:hover{
-
-background:#1d4ed8;
-
-}
-
-
-section{
-
-padding:100px 10%;
-
-}
-
-
-.title{
-
-font-size:36px;
-
-margin-bottom:35px;
-
-color:white;
-
-}
-
-
-.card{
-
-background:#0b0b0b;
-
-border:1px solid #1f2937;
-
-padding:30px;
-
-border-radius:12px;
-
-transition:.25s;
-
-}
-
-
-.card:hover{
-
-border-color:#2563eb;
-
-transform:translateY(-4px);
-
-}
-
-
-.card h3{
-
-margin-bottom:15px;
-
-font-size:22px;
-
-}
-
-
-.card p{
-
-color:#9ca3af;
-
-line-height:1.7;
-
-}
-
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:20px;
-
-}
-
-
-.skills{
-
-display:flex;
-
-flex-wrap:wrap;
-
-gap:12px;
-
-}
-
-
-.skill{
-
-background:#111827;
-
-border:1px solid #1f2937;
-
-padding:10px 18px;
-
-border-radius:6px;
-
-color:#d1d5db;
-
-font-size:14px;
-
-}
-
-
-.skill:hover{
-
-border-color:#2563eb;
-
-}
-
-
-.work-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(320px,1fr));
-
-gap:25px;
-
-}
-
-
-.work-card{
-
-background:#0b0b0b;
-
-border:1px solid #1f2937;
-
-border-radius:12px;
-
-overflow:hidden;
-
-transition:.25s;
-
-}
-
-
-.work-card:hover{
-
-border-color:#2563eb;
-
-}
-
-
-.work-card img,
-.work-card video {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-
-.work-content{
-
-padding:20px;
-
-}
-
-
-.work-content h3{
-
-margin-bottom:10px;
-
-}
-
-
-.work-content p{
-
-color:#9ca3af;
-
-line-height:1.6;
-
-}
-
-
-.stats{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-
-gap:20px;
-
-}
-
-
-.stat{
-
-background:#0b0b0b;
-
-border:1px solid #1f2937;
-
-padding:30px;
-
-border-radius:12px;
-
-text-align:center;
-
-}
-
-
-.stat h1{
-
-font-size:45px;
-
-color:#3b82f6;
-
-}
-
-
-.stat p{
-
-color:#9ca3af;
-
-}
-
-
-.contact{
-
-text-align:center;
-
-}
-
-
-.contact h2{
-
-font-size:40px;
-
-}
-
-
-footer{
-
-padding:30px;
-
-text-align:center;
-
-color:#6b7280;
-
-}
-
-
-.reveal{
-
-opacity:0;
-
-transform:translateY(20px);
-
-transition:.6s;
-
-}
-
-
-.reveal.active{
-
-opacity:1;
-
-transform:none;
-
-}
-
 
 .lightbox{
-
-display:none;
-
-position:fixed;
-
-z-index:9999;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:rgba(0,0,0,.9);
-
-align-items:center;
-justify-content:center;
-
-cursor:pointer;
-
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,.9);
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
 }
-
-
 .lightbox img{
-
-max-width:90%;
-max-height:90%;
-
-border-radius:12px;
-
-border:1px solid #1f2937;
-
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    border:1px solid var(--border);
 }
+.lightbox.active{ display:flex; }
 
+/* ===================== RESPONSIVE ===================== */
 
-.lightbox.active{
-
-display:flex;
-
+@media (max-width:560px){
+    .code-line{ grid-template-columns:24px 1fr; column-gap:12px; }
+    .editor-body{ padding:20px 16px; }
+    .props-row{ padding:14px 16px; flex-direction:column; align-items:flex-start; gap:4px; }
+    .props-value{ font-size:18px; }
 }
-
 </style>
-
 </head>
-
 <body>
 
+<!-- Icon sprite -->
+<svg style="display:none" aria-hidden="true">
+<symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></symbol>
+<symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="icon-game" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></symbol>
+<symbol id="icon-folder" viewBox="0 0 24 24"><path d="M4 7.5A2 2 0 0 1 6 5.5h4l2 2h6A2 2 0 0 1 20 9.5v7A2 2 0 0 1 18 18.5H6A2 2 0 0 1 4 16.5z" fill="currentColor" opacity="0.9"/></symbol>
+<symbol id="icon-script" viewBox="0 0 24 24"><path d="M7 3h6l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 3v4h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 12.5h5M9.5 15.5h5M9.5 9.5h2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+<symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 10-13h-6z" fill="currentColor"/></symbol>
+<symbol id="icon-layers" viewBox="0 0 24 24"><path d="M12 3l8.5 4.8L12 12.6 3.5 7.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 12l8.5 4.8L20.5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 16.2L12 21l8.5-4.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+<symbol id="icon-window" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9.5h18" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="7.2" r=".6" fill="currentColor"/><circle cx="8" cy="7.2" r=".6" fill="currentColor"/></symbol>
+<symbol id="icon-database" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M3.5 8.5a13 13 0 0 1 17 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M6.5 12a9 9 0 0 1 11 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9.5 15.5a5 5 0 0 1 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/></symbol>
+<symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.6-3 7.7-7 9-4-1.3-7-4.4-7-9V6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.7 12.2l2.3 2.3 4.3-4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="icon-node" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="7" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="17.5" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.7 8.5L11 15.8M16.3 8.5L13 15.8M8.1 7h7.8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+<symbol id="icon-route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="1.8" fill="currentColor"/><path d="M6 7.8v2.7c0 1.8 2 1.8 4 2.8s4 1 4 2.8v2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round"/><circle cx="14" cy="19.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="icon-sword" viewBox="0 0 24 24"><path d="M5.5 18.5L16 8M16 8h-3.2V4.8M13 11l3 3M4 20l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="icon-tree" viewBox="0 0 24 24"><circle cx="12" cy="4.2" r="1.6" fill="currentColor"/><path d="M12 5.8v3.4M12 9.2l-5 3.6M12 9.2l5 3.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="14.2" r="1.6" fill="currentColor"/><circle cx="17" cy="14.2" r="1.6" fill="currentColor"/><path d="M7 15.8v2.6M17 15.8v2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="19.8" r="1.4" fill="currentColor"/><circle cx="17" cy="19.8" r="1.4" fill="currentColor"/></symbol>
+<symbol id="icon-cube" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 12v9M12 12l8-4.5M12 12L4 7.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="icon-gauge" viewBox="0 0 24 24"><path d="M4.5 15.5a7.5 7.5 0 0 1 15 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M12 15.5l3.8-4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor"/></symbol>
+<symbol id="icon-ellipsis" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18" cy="12" r="1.6" fill="currentColor"/></symbol>
+<symbol id="icon-table" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="3.2" rx="1" fill="currentColor" opacity=".9"/><rect x="3" y="10.4" width="18" height="3.2" rx="1" fill="currentColor" opacity=".65"/><rect x="3" y="16.3" width="18" height="3.2" rx="1" fill="currentColor" opacity=".4"/></symbol>
+<symbol id="icon-terminal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.8 9.5l3 2.8-3 2.8M12.5 15.1h4.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
-<nav>
-
-<div class="logo">
-&lt;/&gt; Sp4
+<div class="studio-header">
+    <div class="titlebar">
+        <div class="tl-dots">
+            <span class="tl-dot red"></span>
+            <span class="tl-dot yellow"></span>
+            <span class="tl-dot green"></span>
+        </div>
+        <span class="titlebar-title">Sp4.rbxl — Roblox Studio</span>
+        <div class="titlebar-spacer"></div>
+        <div class="win-controls" aria-hidden="true">
+            <span>—</span><span>▢</span><span>×</span>
+        </div>
+    </div>
+    <div class="ribbon">
+        <button class="ribbon-toggle" id="explorerToggle" aria-label="Toggle Explorer panel" aria-expanded="false">
+            <svg class="icon"><use href="#icon-menu"/></svg>
+        </button>
+        <div class="ribbon-logo">
+            <svg class="icon" style="width:16px;height:16px;"><use href="#icon-game"/></svg>
+            Sp4
+        </div>
+        <div class="ribbon-tabs">
+            <span class="ribbon-tab active">Home</span>
+            <span class="ribbon-tab">Model</span>
+            <span class="ribbon-tab">Test</span>
+        </div>
+        <div class="ribbon-spacer"></div>
+        <button class="play-btn" id="playBtn" type="button">
+            <svg class="icon"><use href="#icon-play"/></svg>
+            Play
+        </button>
+    </div>
 </div>
 
-<div>
+<div class="explorer-backdrop" id="explorerBackdrop"></div>
 
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-<a href="#work">Previous Work</a>
-<a href="#contact">Contact</a>
+<nav class="explorer" id="explorer" aria-label="Site navigation">
+    <div class="explorer-header">
+        <span>Explorer</span>
+        <button class="explorer-close" id="explorerClose" aria-label="Close Explorer panel">
+            <svg class="icon"><use href="#icon-close"/></svg>
+        </button>
+    </div>
+    <div class="tree">
+        <div class="tree-branch">
+            <button type="button" class="tree-row branch-toggle">
+                <svg class="chevron icon"><use href="#icon-chevron"/></svg>
+                <svg class="row-icon icon" style="color:var(--accent);"><use href="#icon-game"/></svg>
+                <span class="row-label">Sp4Portfolio</span>
+            </button>
+            <div class="tree-children">
 
-</div>
+                <div class="tree-branch">
+                    <button type="button" class="tree-row branch-toggle">
+                        <svg class="chevron icon"><use href="#icon-chevron"/></svg>
+                        <svg class="row-icon icon" style="color:var(--folder-yellow);"><use href="#icon-folder"/></svg>
+                        <span class="row-label">StarterGui</span>
+                    </button>
+                    <div class="tree-children">
+                        <a href="#about" class="tree-row">
+                            <span class="chevron-spacer"></span>
+                            <svg class="row-icon icon" style="color:var(--script-blue);"><use href="#icon-script"/></svg>
+                            <span class="row-label">AboutMe</span>
+                        </a>
+                        <a href="#skills" class="tree-row">
+                            <span class="chevron-spacer"></span>
+                            <svg class="row-icon icon" style="color:var(--folder-yellow);"><use href="#icon-folder"/></svg>
+                            <span class="row-label">Skills</span>
+                        </a>
+                        <a href="#projects" class="tree-row">
+                            <span class="chevron-spacer"></span>
+                            <svg class="row-icon icon" style="color:var(--folder-yellow);"><use href="#icon-folder"/></svg>
+                            <span class="row-label">Projects</span>
+                        </a>
+                        <a href="#work" class="tree-row">
+                            <span class="chevron-spacer"></span>
+                            <svg class="row-icon icon" style="color:var(--folder-yellow);"><use href="#icon-folder"/></svg>
+                            <span class="row-label">PreviousWork</span>
+                        </a>
+                    </div>
+                </div>
 
+                <div class="tree-branch">
+                    <button type="button" class="tree-row branch-toggle">
+                        <svg class="chevron icon"><use href="#icon-chevron"/></svg>
+                        <svg class="row-icon icon" style="color:var(--folder-yellow);"><use href="#icon-folder"/></svg>
+                        <span class="row-label">ReplicatedStorage</span>
+                    </button>
+                    <div class="tree-children">
+                        <a href="#contact" class="tree-row">
+                            <span class="chevron-spacer"></span>
+                            <svg class="row-icon icon" style="color:var(--remote-green);"><use href="#icon-bolt"/></svg>
+                            <span class="row-label">ContactEvent</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </nav>
 
-
+<div class="main-wrap">
 
 <section class="hero">
-
-<h1>Sp4</h1>
-
-<h2>
-Roblox Developer • LuaU Scripter
-</h2>
-
-
-<p>
-
-I specialize in building high quality Roblox experiences with a focus on optimized code,
-advanced systems, UI programming, DataStores, networking and performance improvements.
-
-</p>
-
-
-<a href="#work" class="button">
-View Previous Work
-</a>
-
-
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+        <div class="hero-breadcrumb">Workspace<span class="sep">›</span>Sp4Portfolio<span class="sep">›</span>StarterGui</div>
+        <h1 class="hero-title">Sp4<span class="hero-cursor"></span></h1>
+        <h2 class="hero-role">-- Roblox Developer • LuaU Scripter</h2>
+        <p>
+            I specialize in building high quality Roblox experiences with a focus on optimized code,
+            advanced systems, UI programming, DataStores, networking and performance improvements.
+        </p>
+        <a href="#work" class="btn-primary">
+            <svg class="icon"><use href="#icon-play"/></svg>
+            View Previous Work
+        </a>
+    </div>
 </section>
-
-
 
 <section id="about" class="reveal">
+    <h1 class="title">
+        <svg class="title-icon icon"><use href="#icon-script"/></svg>
+        About Me
+    </h1>
 
-<h1 class="title">
-About Me
-</h1>
-
-
-<div class="card">
-
-<p>
-
-Hi! I'm a Roblox scripter who enjoys turning ideas into polished, fun, and reliable game systems. Whether it's a small feature or a large-scale project, I like building solutions that are clean, efficient, and easy to expand as a game grows.
-
-I have experience creating a wide variety of systems, including gameplay mechanics, UI frameworks, NPC AI, combat systems, inventories, DataStore systems, procedural generation, optimization, and much more. I always focus on writing organized, maintainable code that performs well and is easy to work with in the future.
-
-One of my favorite parts of scripting is solving difficult problems. I enjoy figuring out how to make complicated systems work smoothly while keeping them optimized and scalable. I pay attention to both performance and the overall player experience, making sure everything feels responsive, polished, and reliable.
-
-I'm comfortable working on almost any scripting task, whether it's creating a brand new system from scratch, improving existing code, fixing bugs, or adding new features. If your project needs a custom solution, there's a good chance I can build it.
-
-I take pride in writing high-quality code, communicating clearly throughout development, and delivering work that helps bring your vision to life.
-
-
-</p>
-
-</div>
-
+    <div class="editor-window">
+        <div class="editor-tabbar">
+            <div class="editor-tab">
+                <svg class="icon"><use href="#icon-script"/></svg>
+                <span>About.lua</span>
+            </div>
+        </div>
+        <div class="editor-body">
+            <div class="editor-code">
+                <div class="code-line"><span class="tok-kw">local</span> <span class="tok-var">Developer</span> = {}</div>
+                <div class="code-line"><span class="tok-var">Developer</span>.Name = <span class="tok-str">"Sp4"</span></div>
+                <div class="code-line"><span class="tok-var">Developer</span>.Role = <span class="tok-str">"Roblox Scripter"</span></div>
+                <div class="code-line">&nbsp;</div>
+                <div class="code-line comment">--[[</div>
+                <div class="code-line comment">&nbsp;&nbsp;&nbsp;Hi! I'm a Roblox scripter who enjoys turning ideas into polished, fun, and reliable game systems. Whether it's a small feature or a large-scale project, I like building solutions that are clean, efficient, and easy to expand as a game grows.</div>
+                <div class="code-line comment">&nbsp;</div>
+                <div class="code-line comment">&nbsp;&nbsp;&nbsp;I have experience creating a wide variety of systems, including gameplay mechanics, UI frameworks, NPC AI, combat systems, inventories, DataStore systems, procedural generation, optimization, and much more. I always focus on writing organized, maintainable code that performs well and is easy to work with in the future.</div>
+                <div class="code-line comment">&nbsp;</div>
+                <div class="code-line comment">&nbsp;&nbsp;&nbsp;One of my favorite parts of scripting is solving difficult problems. I enjoy figuring out how to make complicated systems work smoothly while keeping them optimized and scalable. I pay attention to both performance and the overall player experience, making sure everything feels responsive, polished, and reliable.</div>
+                <div class="code-line comment">&nbsp;</div>
+                <div class="code-line comment">&nbsp;&nbsp;&nbsp;I'm comfortable working on almost any scripting task, whether it's creating a brand new system from scratch, improving existing code, fixing bugs, or adding new features. If your project needs a custom solution, there's a good chance I can build it.</div>
+                <div class="code-line comment">&nbsp;</div>
+                <div class="code-line comment">&nbsp;&nbsp;&nbsp;I take pride in writing high-quality code, communicating clearly throughout development, and delivering work that helps bring your vision to life.</div>
+                <div class="code-line comment">]]</div>
+                <div class="code-line">&nbsp;</div>
+                <div class="code-line"><span class="tok-kw">return</span> <span class="tok-var">Developer</span></div>
+            </div>
+        </div>
+    </div>
 </section>
-
-
 
 <section id="skills" class="reveal">
+    <h1 class="title">
+        <svg class="title-icon icon"><use href="#icon-layers"/></svg>
+        Skills
+    </h1>
 
-<h1 class="title">
-Skills
-</h1>
+    <div class="skills-groups">
 
+        <div class="skill-group grp-scripting">
+            <div class="skill-group-items">
+                <div class="skill-btn"><svg class="icon"><use href="#icon-bolt"/></svg><span>Code Optimization</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-layers"/></svg><span>System Architecture</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-gauge"/></svg><span>Optimization</span></div>
+            </div>
+            <div class="skill-group-caption">Scripting</div>
+        </div>
 
-<div class="skills">
-    
-<div class="skill">Code Optimization</div>
-<div class="skill">System Architecture</div>
-<div class="skill">UI Programming</div>
-<div class="skill">DataStores</div>
-<div class="skill">Networking</div>
-<div class="skill">Remote Security</div>
-<div class="skill">NPC AI</div>
-<div class="skill">Pathfinding</div>
-<div class="skill">Inventory Systems</div>
-<div class="skill">Combat Systems</div>
-<div class="skill">Procedural Generation</div>
-<div class="skill">Building</div>
-<div class="skill">Optimization</div>
-<div class="skill">And much more!</div>
+        <div class="skill-group grp-systems">
+            <div class="skill-group-items">
+                <div class="skill-btn"><svg class="icon"><use href="#icon-node"/></svg><span>NPC AI</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-route"/></svg><span>Pathfinding</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-grid"/></svg><span>Inventory Systems</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-sword"/></svg><span>Combat Systems</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-tree"/></svg><span>Procedural Generation</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-cube"/></svg><span>Building</span></div>
+            </div>
+            <div class="skill-group-caption">Systems &amp; World</div>
+        </div>
 
-</div>
+        <div class="skill-group grp-data">
+            <div class="skill-group-items">
+                <div class="skill-btn"><svg class="icon"><use href="#icon-database"/></svg><span>DataStores</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-wifi"/></svg><span>Networking</span></div>
+                <div class="skill-btn"><svg class="icon"><use href="#icon-shield"/></svg><span>Remote Security</span></div>
+            </div>
+            <div class="skill-group-caption">Data &amp; Network</div>
+        </div>
 
+        <div class="skill-group grp-interface">
+            <div class="skill-group-items">
+                <div class="skill-btn"><svg class="icon"><use href="#icon-window"/></svg><span>UI Programming</span></div>
+            </div>
+            <div class="skill-group-caption">Interface</div>
+        </div>
+
+    </div>
+
+    <p class="skills-more">
+        <svg class="icon"><use href="#icon-ellipsis"/></svg>
+        and much more!
+    </p>
 </section>
+
 <section id="projects" class="reveal">
+    <h1 class="title">
+        <svg class="title-icon icon"><use href="#icon-folder"/></svg>
+        Featured Projects
+    </h1>
 
-<h1 class="title">
-Featured Projects
-</h1>
+    <div class="grid">
 
+        <div class="proj-window">
+            <div class="proj-titlebar">
+                <svg class="icon"><use href="#icon-script"/></svg>
+                <span class="proj-fname">PerformanceOptimization.lua</span>
+                <span class="proj-chip">Optimization</span>
+            </div>
+            <pre class="proj-code"><span class="tok-kw">local function</span> <span class="tok-func">optimize</span>()
+    <span class="tok-comment">-- Improving Roblox games by reducing unnecessary calculations,
+    -- optimizing scripts, improving networking, and creating
+    -- efficient systems.</span>
+<span class="tok-kw">end</span></pre>
+        </div>
 
-<div class="grid">
+        <div class="proj-window">
+            <div class="proj-titlebar">
+                <svg class="icon"><use href="#icon-script"/></svg>
+                <span class="proj-fname">AdvancedSystems.lua</span>
+                <span class="proj-chip">Systems</span>
+            </div>
+            <pre class="proj-code"><span class="tok-kw">local function</span> <span class="tok-func">buildSystems</span>()
+    <span class="tok-comment">-- Creating complete gameplay systems such as inventories,
+    -- quests, combat, NPC logic, and scalable frameworks.</span>
+<span class="tok-kw">end</span></pre>
+        </div>
 
+        <div class="proj-window">
+            <div class="proj-titlebar">
+                <svg class="icon"><use href="#icon-script"/></svg>
+                <span class="proj-fname">UICoding.lua</span>
+                <span class="proj-chip">Interface</span>
+            </div>
+            <pre class="proj-code"><span class="tok-kw">local function</span> <span class="tok-func">craftUI</span>()
+    <span class="tok-comment">-- Creating smooth, responsive, and visually appealing user
+    -- interfaces with clean animations and interactive functions.
+    -- I focus on making UI elements feel polished through
+    -- transitions, effects, and optimized scripting while ensuring
+    -- everything remains easy to use and performs well across
+    -- different devices.</span>
+<span class="tok-kw">end</span></pre>
+        </div>
 
-<div class="card">
-
-<h3>
-Performance Optimization
-</h3>
-
-<p>
-
-Improving Roblox games by reducing unnecessary calculations,
-optimizing scripts, improving networking,
-and creating efficient systems.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-Advanced Systems
-</h3>
-
-<p>
-
-Creating complete gameplay systems such as inventories,
-quests, combat, NPC logic, and scalable frameworks.
-
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>
-UI Coding
-</h3>
-
-<p>
-
-Creating smooth, responsive, and visually appealing user interfaces with clean animations and interactive functions.
-I focus on making UI elements feel polished through transitions, effects, and optimized scripting while ensuring everything remains easy to use and performs well across different devices.
-
-</p>
-
-</div>
-
-
-</div>
-
+    </div>
 </section>
-
-
-
 
 <section id="work" class="reveal">
+    <h1 class="title">
+        <svg class="title-icon icon"><use href="#icon-window"/></svg>
+        Previous Work
+    </h1>
 
-<h1 class="title">
-Previous Work
-</h1>
+    <p style="opacity:.7;margin-bottom:40px;">
+        Some of my previous works. Click images to view them fullscreen.
+    </p>
 
+    <div class="work-grid">
 
-<p style="opacity:.7;margin-bottom:40px;">
+        <div class="work-card">
+            <div class="work-titlebar">
+                <div class="tl-dots"><span class="tl-dot red"></span><span class="tl-dot yellow"></span><span class="tl-dot green"></span></div>
+                <span class="work-fname">ScreenShot.png</span>
+            </div>
+            <img src="ScreenShot.png" alt="Code style screenshot">
+            <div class="work-content">
+                <h3>Code Style</h3>
+                <p>This is what my code might look like in your game.</p>
+            </div>
+        </div>
 
-Some of my previous works. Click images to view them fullscreen.
+        <div class="work-card">
+            <div class="work-titlebar">
+                <div class="tl-dots"><span class="tl-dot red"></span><span class="tl-dot yellow"></span><span class="tl-dot green"></span></div>
+                <span class="work-fname">ScreenShot2.png</span>
+            </div>
+            <img src="ScreenShot2.png" alt="Sorting and organization screenshot">
+            <div class="work-content">
+                <h3>Sorting and organization</h3>
+                <p>I keep my codes and structure clean and organized for my clients.</p>
+            </div>
+        </div>
 
-</p>
+        <div class="work-card">
+            <div class="work-titlebar">
+                <div class="tl-dots"><span class="tl-dot red"></span><span class="tl-dot yellow"></span><span class="tl-dot green"></span></div>
+                <span class="work-fname">Roblox Studio 2026.08.05 - 20.41.41.03.mp4</span>
+            </div>
+            <video autoplay muted loop playsinline>
+                <source src="Roblox Studio 2026.08.05 - 20.41.41.03.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="work-content">
+                <h3>Gun System</h3>
+                <p>This is an advanced gun system i made 2 months ago.</p>
+            </div>
+        </div>
 
-
-
-<div class="work-grid">
-
-
-
-<div class="work-card">
-
-<img src="ScreenShot.png">
-
-<div class="work-content">
-
-<h3>
-Code Style
-</h3>
-
-<p>
-This is what my code might look like in your game.
-</p>
-
-</div>
-
-</div>
-
-<div class="work-card">
-
-<img src="ScreenShot2.png">
-
-<div class="work-content">
-
-<h3>
-Sorting and organization
-</h3>
-
-<p>
-I keep my codes and structure clean and organized for my clients.
-</p>
-
-</div>
-
-</div>
-
-<div class="work-card">
-
-    <video autoplay muted loop playsinline>
-        <source src="Roblox Studio 2026.08.05 - 20.41.41.03.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="work-content">
-
-        <h3>
-            Gun System.
-        </h3>
-
-        <p>
-            This is an advanced gun system i made 2 months ago.
-        </p>
+        <div class="work-card">
+            <div class="work-titlebar">
+                <div class="tl-dots"><span class="tl-dot red"></span><span class="tl-dot yellow"></span><span class="tl-dot green"></span></div>
+                <span class="work-fname">Roblox Studio 2026.08.06 - 20.51.21.01.mp4</span>
+            </div>
+            <video autoplay muted loop playsinline>
+                <source src="Roblox Studio 2026.08.06 - 20.51.21.01.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="work-content">
+                <h3>Abilities</h3>
+                <p>Random simple Abilities system i made, took around 2 hours to make.</p>
+            </div>
+        </div>
 
     </div>
-
-</div>
-
-<div class="work-card">
-
-    <video autoplay muted loop playsinline>
-        <source src="Roblox Studio 2026.08.06 - 20.51.21.01.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="work-content">
-
-        <h3>
-            Abilities
-        </h3>
-        <p>
-            Random simple Abilities system i made, took around 5 hours to make.
-        </p>
-    </div>
-
-</div>
-
-
-
-</div>
-
 </section>
-
-
-
-
 
 <section class="reveal">
+    <h1 class="title">
+        <svg class="title-icon icon"><use href="#icon-table"/></svg>
+        Statistics
+    </h1>
 
-<h1 class="title">
-Statistics
-</h1>
-
-
-
-<div class="stats">
-
-
-
-<div class="stat">
-
-<h1>
-2000+
-</h1>
-
-<p>
-Hours spent developing.
-</p>
-
-</div>
-
-
-
-
-<div class="stat">
-
-<h1>
-15+
-</h1>
-
-<p>
-Completed commissions.
-</p>
-
-</div>
-
-
-
-
-<div class="stat">
-
-<h1>
-240M+
-</h1>
-
-<p>
-Visits contributed to.
-</p>
-
-</div>
-
-
-
-
-<div class="stat">
-
-<h1>
-100%
-</h1>
-
-<p>
-Dedicated to quality work.
-</p>
-
-</div>
-
-
-
-</div>
-
+    <div class="props-panel">
+        <div class="props-header">
+            <svg class="icon"><use href="#icon-table"/></svg>
+            Properties
+        </div>
+        <div class="props-row">
+            <span class="props-name">HoursSpent</span>
+            <span class="props-value number">2000+</span>
+        </div>
+        <div class="props-row">
+            <span class="props-name">CompletedCommissions</span>
+            <span class="props-value number">15+</span>
+        </div>
+        <div class="props-row">
+            <span class="props-name">VisitsContributed</span>
+            <span class="props-value number">240M+</span>
+        </div>
+        <div class="props-row">
+            <span class="props-name">QualityFocus</span>
+            <span class="props-value string">"100%"</span>
+        </div>
+    </div>
 </section>
-
-
-
-
-
 
 <section id="contact" class="contact reveal">
+    <h2>Let's Build Something Great</h2>
+    <p class="subtext">Reach out and let's talk about your project.</p>
 
-
-<h2>
-Let's Build Something Great
-</h2>
-
-
-<p style="margin-top:25px;font-size:20px;opacity:.7;">
-
-Discord:
-<b>@5hah</b>
-
-</p>
-
+    <div class="command-bar">
+        <div class="command-header">
+            <svg class="icon"><use href="#icon-terminal"/></svg>
+            Command Bar
+        </div>
+        <div class="command-body">
+            <div class="command-line"><span class="prompt">&gt;</span>print(Contact.Discord)</div>
+            <div class="command-output">@5hah<span class="cursor-blink"></span></div>
+        </div>
+    </div>
 </section>
 
-<footer>
-
-© 2026 Sp4 • Roblox Developer
-
+<footer class="status-bar">
+    <div class="status-left">
+        <span class="status-dot"></span>
+        Ready
+    </div>
+    <div>© 2026 Sp4 • Roblox Developer</div>
 </footer>
-
-
-
-
-
-<div class="lightbox" id="lightbox">
-
-<img id="lightbox-image" alt="Preview">
 
 </div>
 
-
-
+<div class="lightbox" id="lightbox">
+    <img id="lightbox-image" alt="Preview">
+</div>
 
 <script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.15 });
 
-const observer = new IntersectionObserver(entries=>{
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-entries.forEach(entry=>{
+// Lightbox (images only, matching original behavior)
+const images = document.querySelectorAll('.work-card img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
 
-if(entry.isIntersecting){
+images.forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightbox.classList.add('active');
+    });
+});
 
-entry.target.classList.add("active");
+lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    lightboxImage.src = '';
+});
 
+// Explorer: collapse / expand branches
+document.querySelectorAll('.branch-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.closest('.tree-branch').classList.toggle('collapsed');
+    });
+});
+
+// Explorer: mobile drawer
+const explorer = document.getElementById('explorer');
+const backdrop = document.getElementById('explorerBackdrop');
+const toggleBtn = document.getElementById('explorerToggle');
+const closeBtn = document.getElementById('explorerClose');
+
+function openExplorer(){
+    explorer.classList.add('open');
+    backdrop.classList.add('open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+}
+function closeExplorer(){
+    explorer.classList.remove('open');
+    backdrop.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
 }
 
+toggleBtn.addEventListener('click', () => {
+    explorer.classList.contains('open') ? closeExplorer() : openExplorer();
+});
+backdrop.addEventListener('click', closeExplorer);
+closeBtn.addEventListener('click', closeExplorer);
+
+document.querySelectorAll('.tree-row[href]').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth < 900) closeExplorer();
+    });
 });
 
-
-},
-{
-threshold:0.2
+// Explorer: highlight the section currently in view
+const navLinks = document.querySelectorAll('.tree-row[href]');
+const sectionMap = {};
+navLinks.forEach(link => {
+    const id = link.getAttribute('href');
+    if (document.querySelector(id)) sectionMap[id] = link;
 });
 
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const id = '#' + entry.target.id;
+        const link = sectionMap[id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('selected'));
+            link.classList.add('selected');
+        }
+    });
+}, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
-
-document
-.querySelectorAll(".reveal")
-.forEach(element=>observer.observe(element));
-
-const images = document.querySelectorAll(".work-card img");
-
-const lightbox = document.getElementById("lightbox");
-
-const lightboxImage = document.getElementById("lightbox-image");
-
-
-
-images.forEach(image=>{
-
-
-image.addEventListener("click",()=>{
-
-
-lightboxImage.src = image.src;
-
-lightbox.classList.add("active");
-
-
+Object.keys(sectionMap).forEach(id => {
+    sectionObserver.observe(document.querySelector(id));
 });
 
-
+// Play button scrolls to top
+document.getElementById('playBtn').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-
-
-lightbox.addEventListener("click",()=>{
-
-
-lightbox.classList.remove("active");
-
-lightboxImage.src="";
-
-
-});
-
-
 </script>
 
-
 </body>
-
 </html>
