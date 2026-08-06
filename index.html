@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1e1e1e">
-<meta name="description" content="Sp4 — Roblox developer and Luau scripter specializing in optimized systems, UI programming, DataStores and networking.">
-<title>Sp4 — Roblox Developer | Studio Portfolio</title>
+<meta name="description" content="Sp4 - Roblox developer and Luau scripter specializing in optimized systems, UI programming, DataStores and networking.">
+<title>My Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -82,9 +82,7 @@ a{ color:inherit; }
 ::-webkit-scrollbar-thumb:hover{ background:#4a4a4d; }
 
 svg.icon{ display:block; }
-
-/* ===================== HEADER (title bar + ribbon) ===================== */
-
+    
 .studio-header{
     position:fixed;
     top:0; left:0; right:0;
@@ -208,8 +206,6 @@ svg.icon{ display:block; }
     .titlebar-title{ display:none; }
 }
 
-/* ===================== EXPLORER SIDEBAR ===================== */
-
 .explorer-backdrop{
     position:fixed;
     inset:0;
@@ -314,8 +310,6 @@ svg.icon{ display:block; }
     .explorer-close{ display:block; }
 }
 
-/* ===================== LAYOUT ===================== */
-
 .main-wrap{ margin-left:var(--sidebar-w); }
 
 @media (max-width:899px){
@@ -337,8 +331,6 @@ section{
 }
 
 .title-icon{ width:26px; height:26px; color:var(--accent); flex-shrink:0; }
-
-/* ===================== HERO ===================== */
 
 .hero{
     position:relative;
@@ -439,8 +431,6 @@ section{
 .btn-primary:hover{ background:#5fbaff; transform:translateY(-2px); }
 .btn-primary svg{ width:12px; height:12px; }
 
-/* ===================== ABOUT (editor window) ===================== */
-
 .editor-window{
     background:var(--bg-alt);
     border:1px solid var(--border);
@@ -501,8 +491,6 @@ section{
 .tok-str{ color:var(--string); }
 .tok-var{ color:var(--variable); }
 .tok-func{ color:var(--func); }
-
-/* ===================== SKILLS ===================== */
 
 .skills-groups{
     display:flex;
@@ -572,8 +560,6 @@ section{
 }
 .skills-more svg{ width:16px; height:16px; }
 
-/* ===================== PROJECTS ===================== */
-
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
@@ -629,8 +615,6 @@ section{
     flex:1;
 }
 
-/* ===================== PREVIOUS WORK ===================== */
-
 .work-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
@@ -677,8 +661,6 @@ section{
 .work-content h3{ margin-bottom:9px; color:white; }
 .work-content p{ color:var(--text-dim); line-height:1.6; font-size:14.5px; }
 
-/* ===================== STATISTICS (properties panel) ===================== */
-
 .props-panel{
     background:var(--bg-alt);
     border:1px solid var(--border);
@@ -722,8 +704,6 @@ section{
 }
 .props-value.number{ color:var(--number); }
 .props-value.string{ color:var(--string); }
-
-/* ===================== CONTACT (command bar) ===================== */
 
 .contact{ text-align:center; }
 .contact h2{ font-size:clamp(28px,4.5vw,40px); color:white; font-weight:700; }
@@ -772,8 +752,6 @@ section{
 }
 @media (prefers-reduced-motion: reduce){ .cursor-blink{ animation:none; } }
 
-/* ===================== FOOTER (status bar) ===================== */
-
 .status-bar{
     display:flex;
     align-items:center;
@@ -789,8 +767,6 @@ section{
 }
 .status-left{ display:flex; align-items:center; gap:8px; }
 .status-dot{ width:8px; height:8px; border-radius:50%; background:var(--accent-green); }
-
-/* ===================== REVEAL / LIGHTBOX ===================== */
 
 .reveal{ opacity:0; transform:translateY(20px); transition:.6s; }
 .reveal.active{ opacity:1; transform:none; }
@@ -817,8 +793,6 @@ section{
 }
 .lightbox.active{ display:flex; }
 
-/* ===================== RESPONSIVE ===================== */
-
 @media (max-width:560px){
     .code-line{ grid-template-columns:24px 1fr; column-gap:12px; }
     .editor-body{ padding:20px 16px; }
@@ -829,7 +803,6 @@ section{
 </head>
 <body>
 
-<!-- Icon sprite -->
 <svg style="display:none" aria-hidden="true">
 <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="icon-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></symbol>
@@ -1249,7 +1222,7 @@ section{
 </div>
 
 <script>
-// Reveal on scroll
+    
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1259,8 +1232,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Lightbox (images only, matching original behavior)
+    
 const images = document.querySelectorAll('.work-card img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightbox-image');
@@ -1277,14 +1249,12 @@ lightbox.addEventListener('click', () => {
     lightboxImage.src = '';
 });
 
-// Explorer: collapse / expand branches
 document.querySelectorAll('.branch-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
         btn.closest('.tree-branch').classList.toggle('collapsed');
     });
 });
 
-// Explorer: mobile drawer
 const explorer = document.getElementById('explorer');
 const backdrop = document.getElementById('explorerBackdrop');
 const toggleBtn = document.getElementById('explorerToggle');
@@ -1313,7 +1283,6 @@ document.querySelectorAll('.tree-row[href]').forEach(link => {
     });
 });
 
-// Explorer: highlight the section currently in view
 const navLinks = document.querySelectorAll('.tree-row[href]');
 const sectionMap = {};
 navLinks.forEach(link => {
@@ -1337,9 +1306,11 @@ Object.keys(sectionMap).forEach(id => {
     sectionObserver.observe(document.querySelector(id));
 });
 
-// Play button scrolls to top
 document.getElementById('playBtn').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ 
+    top: document.body.scrollHeight, 
+    behavior: 'smooth' 
+});
 });
 </script>
 
